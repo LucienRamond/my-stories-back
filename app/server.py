@@ -13,10 +13,14 @@ db = SQLAlchemy(app)
 
 CORS(app, supports_credentials=True)
 
-from app.model.drawings import Drawing
+from app.model.drawing import Drawing
+from app.model.story import Story
 
 from app.api.drawings import drawings_route
 app.register_blueprint(drawings_route)
+
+from app.api.stories import stories_route
+app.register_blueprint(stories_route)
 
 # with app.app_context():
 #     db.create_all()

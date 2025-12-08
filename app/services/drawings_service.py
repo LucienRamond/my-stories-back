@@ -1,5 +1,5 @@
 import os
-from app.model.drawings import Drawing
+from app.model.drawing import Drawing
 from flask import send_file
 from pathlib import Path
 from app.server import app, db
