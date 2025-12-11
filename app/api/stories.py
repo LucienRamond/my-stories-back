@@ -1,9 +1,11 @@
 from flask import Blueprint, request
-from app.services.stories_service import StoriesService
+from services.stories_service import StoriesService
+from flask_cors import cross_origin
 
 stories_route = Blueprint("stories_route", __name__)
 
 @stories_route.route('/stories', methods=['GET'])
+@cross_origin()
 def get_stories():
     return StoriesService.get_all_stories()
 
