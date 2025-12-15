@@ -1,14 +1,16 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from logging import FileHandler,WARNING
+from dotenv import load_dotenv, find_dotenv
 
-UPLOAD_FOLDER = './imgs/'
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////home/ubuntu/my-stories-back/instance/database.db"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DEPLOY_DATABASE_URI")
+app.config['UPLOAD_FOLDER'] = os.environ.get("UPLOAD_FOLDER")
 app.config['PROPAGATE_EXCEPTIONS'] = True
 file_handler = FileHandler('errorlog.txt')
 file_handler.setLevel(WARNING)
@@ -27,8 +29,10 @@ app.register_blueprint(drawings_route)
 from api.stories import stories_route
 app.register_blueprint(stories_route)
 
+# with app.app_context():
+#     db.create_all()
+
 if __name__ == "__name__":
         app.run()
 
-# with app.app_context():
-#     db.create_all()
+
