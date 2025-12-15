@@ -22,6 +22,7 @@ CORS(app, intercept_exceptions=True, supports_credentials=True)
 
 from model.drawing import Drawing
 from model.story import Story
+from model.user import User
 
 from api.drawings import drawings_route
 app.register_blueprint(drawings_route)
@@ -29,10 +30,11 @@ app.register_blueprint(drawings_route)
 from api.stories import stories_route
 app.register_blueprint(stories_route)
 
+from api.user import user_route
+app.register_blueprint(user_route)
+
 # with app.app_context():
 #     db.create_all()
 
 if __name__ == "__name__":
         app.run()
-
-
