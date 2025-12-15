@@ -41,7 +41,7 @@ class DrawingsService():
     def delete_drawing(drawing_id):
         drawing = Drawing.query.filter_by(id=drawing_id).first()
 
-        os.remove(f'app/imgs/{drawing.img_name}')
+        os.remove(f'{app.config['UPLOAD_FOLDER']}{drawing.img_name}')
 
         db.session.delete(drawing)
         db.session.commit()
