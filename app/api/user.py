@@ -1,8 +1,15 @@
 from flask import Blueprint, request
 from services.users_service import UserService
+from utils.JwtToken import token_required
 
 user_route = Blueprint('user_route', __name__)
 
-@user_route.route('/user/<int:user_id>', methods=['GET'])
-def signup(user_id):
+@user_route.route('/users/<int:user_id>', methods=['GET'])
+@token_required
+def get_user(user_id):
     return UserService.get_user_by_id(user_id)
+
+@user_route.route('/user/login', methods=['POST'])
+def login():
+    user_data = request.get_json()
+    return UserService.login(user_data)

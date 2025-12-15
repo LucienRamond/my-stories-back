@@ -9,6 +9,7 @@ load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DEPLOY_DATABASE_URI")
 app.config['UPLOAD_FOLDER'] = os.environ.get("UPLOAD_FOLDER")
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -33,8 +34,8 @@ app.register_blueprint(stories_route)
 from api.user import user_route
 app.register_blueprint(user_route)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 if __name__ == "__name__":
         app.run()
