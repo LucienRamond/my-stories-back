@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.services.drawings_service import DrawingsService
+from services.drawings_service import DrawingsService
 from werkzeug.utils import secure_filename
 import os
 
@@ -29,7 +29,7 @@ def post_img_file(drawing_id):
     if allowed_file(file.filename):
         img_name = secure_filename(file.filename)
         name, extension = os.path.splitext(img_name)
-        return DrawingsService.upload_img_file(file, (f'{str(drawing_id)}{extension}'), drawing_id)        
+        return DrawingsService.upload_img_file(file, (f'{str(drawing_id)}{extension}'), drawing_id)
 
 @drawings_route.route('/drawings/upload-img-data', methods=['POST'])
 def post_img_data():

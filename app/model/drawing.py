@@ -1,4 +1,4 @@
-from app.server import db
+from server import db
 
 class Drawing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
