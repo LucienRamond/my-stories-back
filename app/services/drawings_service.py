@@ -20,12 +20,15 @@ class DrawingsService():
         return send_file(img)
 
     def upload_img_file(img, img_name, img_id):
-        img.save(os.path.join(app.config['UPLOAD_FOLDER'], img_name))
-        drawing = Drawing.query.filter_by(id=img_id).first()
-        drawing.img_name = img_name
-
+        try:
+            img.save(os.path.join(app.config['UPLOAD_FOLDER'], img_name))
+            drawing = Drawing.query.filter_by(id=img_id).first()
+            drawing.img_name = img_name
+        except Exception as e:
+                return (f'{e}')
+        
         db.session.commit()
-
+        
         return 'Image bien enregistrée !'
 
     def upload_img_data(img_data):

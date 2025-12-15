@@ -3,8 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from logging import FileHandler,WARNING
 
-
-UPLOAD_FOLDER = 'home/ubuntu/my-stories-back/app/imgs/'
+UPLOAD_FOLDER = '/home/ubuntu/my-stories-back/app/imgs/'
 
 app = Flask(__name__)
 
