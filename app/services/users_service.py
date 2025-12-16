@@ -23,7 +23,7 @@ class UserService():
                  
             token = jwt.encode({"username":user.username, "exp": datetime.now(timezone.utc) + timedelta(hours=1)}, os.environ.get('SECRET_KEY'), algorithm="HS256")
             response = make_response({"name": user.username})
-            response.set_cookie("jwt_token", token)
+            response.set_cookie("jwt_token", token, httponly=True)
 
             return response
           
