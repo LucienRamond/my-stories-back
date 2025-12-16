@@ -14,7 +14,12 @@ def login():
     user_data = request.get_json()
     return UserService.login(user_data)
 
+@user_route.route('/user/logout', methods=['GET'])
+def logout():
+    return UserService.logout()
+
 @user_route.route('/user/islogged', methods=['GET'])
 @token_required
 def user_is_logged():
     return UserService.is_logged()
+

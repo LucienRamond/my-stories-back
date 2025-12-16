@@ -29,6 +29,11 @@ class UserService():
           
         except Exception as e:
             return (f'{e}')
-        
+
+    def logout():
+        response = make_response({'message': 'Successfully logged out'}, 200)
+        response.delete_cookie("jwt_token")
+        return response
+            
     def is_logged():
         return make_response({"islogged":True})
