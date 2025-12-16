@@ -13,3 +13,8 @@ def get_user(user_id):
 def login():
     user_data = request.get_json()
     return UserService.login(user_data)
+
+@user_route.route('/user/islogged', methods=['GET'])
+@token_required
+def user_is_logged():
+    return UserService.is_logged()
