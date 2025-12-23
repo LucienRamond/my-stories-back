@@ -14,6 +14,11 @@ def login():
     user_data = request.get_json()
     return UserService.login(user_data)
 
+@user_route.route('/user/update', methods=['PATCH'])
+def update():
+    user_data = request.get_json()
+    return UserService.login(user_data)
+
 @user_route.route('/user/logout', methods=['GET'])
 def logout():
     return UserService.logout()
