@@ -5,7 +5,6 @@ from utils.JwtToken import token_required
 user_route = Blueprint('user_route', __name__)
 
 @user_route.route('/users/<int:user_id>', methods=['GET'])
-@token_required
 def get_user(user_id):
     return UserService.get_user_by_id(user_id)
 
@@ -15,9 +14,10 @@ def login():
     return UserService.login(user_data)
 
 @user_route.route('/user/update', methods=['PATCH'])
+@token_required
 def update():
     user_data = request.get_json()
-    return UserService.login(user_data)
+    return UserService.update(user_data)
 
 @user_route.route('/user/logout', methods=['GET'])
 def logout():

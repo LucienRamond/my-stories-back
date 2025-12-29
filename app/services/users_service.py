@@ -10,9 +10,14 @@ class UserService():
     def get_user_by_id(user_id):
         try:
             user = User.query.filter_by(id=user_id).first()
+            response = make_response({
+                "id":user.id,
+                "name":user.username,
+                "avatar_img":user.avatar_img,
+            })
         except Exception as e:
             return (f'{e}')
-        return (f'{user.username}')
+        return response
     
     def login(user_data):
         try:
