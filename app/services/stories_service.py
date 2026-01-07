@@ -26,6 +26,19 @@ class StoriesService():
 
             return (f'{story.id}')
 
+        def update_story(story_id, story_data):
+            story = Story.query.filter_by(id=story_id).first()
+
+            if story_id != story_data['id']:
+                return (f'Story can\'t be updated')
+
+            story.name = story_data["name"]
+            story.story = story_data["story"]
+
+            db.session.commit()
+
+            return (f'Story successfully updated')
+
         def delete_story(story_id):
             story = Story.query.filter_by(id=story_id).first()
 
