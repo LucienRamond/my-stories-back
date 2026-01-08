@@ -24,6 +24,7 @@ CORS(app, intercept_exceptions=True, supports_credentials=True)
 from model.drawing import Drawing
 from model.story import Story
 from model.user import User
+from model.message import Message
 
 from api.drawings import drawings_route
 app.register_blueprint(drawings_route)
@@ -33,6 +34,9 @@ app.register_blueprint(stories_route)
 
 from api.user import user_route
 app.register_blueprint(user_route)
+
+from api.messages import messages_route
+app.register_blueprint(messages_route)
 
 with app.app_context():
     db.create_all()
