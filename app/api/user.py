@@ -4,6 +4,10 @@ from utils.JwtToken import token_required
 
 user_route = Blueprint('user_route', __name__)
 
+@user_route.route('/users/all', methods=['GET'])
+def get_users():
+    return UserService.get_all_users()
+
 @user_route.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     return UserService.get_user_by_id(user_id)

@@ -18,6 +18,19 @@ class UserService():
         except Exception as e:
             return (f'{e}')
         return response
+
+    def get_all_users():
+        try:
+            users = User.query.all()
+
+            response = [{"id":user.id,
+                "name":user.username,
+                "avatar_img":user.avatar_img} for user in users]
+            
+        except Exception as e:
+            return (f'{e}')
+        
+        return make_response(response)
     
     def login(user_data):
         try:
